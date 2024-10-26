@@ -31,7 +31,19 @@ int main() {
 
     int choice = 0;
     while (choice != 4) {
-        
+        choice = main_menu();
+        if (choice == 1) {
+            //add goat
+        }
+        else if (choice == 2) {
+            //delete goat
+        }
+        else if (choice == 3) {
+            //list goats
+        }
+       // else if (choice == 4) {
+            //quit so just put nothing ehre
+      //  }
     }
 
 
@@ -48,4 +60,16 @@ int main_menu() {
     int choice;
     cin >> choice;
     return choice;
+}
+
+void add_goat(list<Goat> &trip, string names[], string colors[]) {
+    string name, color;
+    int age;
+    name = names[rand() % SZ_NAMES];
+    color = colors[rand() % SZ_COLORS];
+    age = rand() % MAX_AGE;
+
+    Goat addedGoat(name, age, color);
+    trip.push_back(addedGoat);
+    cout << "Goat added, Name: " << name << ", Age: " << age << ", Color: " << color;
 }
