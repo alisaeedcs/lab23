@@ -77,9 +77,27 @@ void add_goat(list<Goat> &trip, string names[], string colors[]) {
     cout << "\tGoat added, Name: " << name << ", Age: " << age << ", Color: " << color;
 }
 
-//display the trip so that we can see all elements in list for deleting
+//display the trip so that we can see all elements in list for deleting (use select with this and then use delete with the select)
 void display_trip(list<Goat> trip) {
-    for (int i = 0; i < trip.size(); i++) {
-        cout << "[" << i + 1 << "] " << trip[0].get_name();
+    int i = 1;
+    for (auto it = trip.begin(); it!= trip.end(); ++it) {
+        cout << "[" << i << "] " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")\n";
+        i++;
     }
 }
+
+//select number of goat for now to be used to delete
+int select_goat(list<Goat> trip) {
+    display_trip(trip);
+
+    int choice;
+    cout << "Enter the number of the goat you want to perform this action on: ";
+    cin >> choice;
+
+    return choice; 
+}
+
+void delete_goat(list<Goat> &trip) {
+    
+}
+
