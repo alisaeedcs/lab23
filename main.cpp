@@ -29,9 +29,23 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
-
+    int choice = 0;
+    while (choice != 4) {
+        
+    }
 
 
     return 0;
 }
 
+int main_menu() {
+    cout << "\t*** GOAT MANAGER 3001 ***\n";
+    cout << "\t[1] Add a goat\n";
+    cout << "\t[2] Delete a goat\n";
+    cout << "\t[3] List goats\n";
+    cout << "\t[4] Quit\n";
+    cout << "\tChoice --> ";
+    int choice;
+    cin >> choice;
+    return choice;
+}
