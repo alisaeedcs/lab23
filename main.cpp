@@ -39,15 +39,21 @@ int main() {
         }
         else if (choice == 2) {
             //delete goat
+            delete_goat(trip);
         }
         else if (choice == 3) {
             //list goats
+            display_trip(trip);
         }
-       // else if (choice == 4) {
+        else if (choice == 4) {
             //quit so just put nothing ehre
-      //  }
+        }
+        else {
+            cout << "Invalid choice \n";
+        }
     }
-
+    //first run attempt resulted in lots of errors with the auto type specifier have to update my coderuner
+    //actually can ust try other thing to run it
 
     return 0;
 }
@@ -98,6 +104,11 @@ int select_goat(list<Goat> trip) {
 }
 
 void delete_goat(list<Goat> &trip) {
-    
+    auto it = trip.begin();
+    int choice = select_goat(trip);
+    for (int i = 0; i < choice; i++) {
+        it++;
+    }
+    trip.erase(it);
 }
 
