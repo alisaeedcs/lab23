@@ -15,7 +15,6 @@ int main_menu();
 
 int main() {
     srand(time(0));
-    bool again;
 
     // read & populate arrays for names and colors
     ifstream fin("names.txt");
@@ -29,11 +28,14 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
+    list<Goat> trip;
+
     int choice = 0;
     while (choice != 4) {
         choice = main_menu();
         if (choice == 1) {
             //add goat
+            add_goat(trip, names, colors);
         }
         else if (choice == 2) {
             //delete goat
@@ -62,6 +64,7 @@ int main_menu() {
     return choice;
 }
 
+//add goat to list
 void add_goat(list<Goat> &trip, string names[], string colors[]) {
     string name, color;
     int age;
@@ -71,5 +74,12 @@ void add_goat(list<Goat> &trip, string names[], string colors[]) {
 
     Goat addedGoat(name, age, color);
     trip.push_back(addedGoat);
-    cout << "Goat added, Name: " << name << ", Age: " << age << ", Color: " << color;
+    cout << "\tGoat added, Name: " << name << ", Age: " << age << ", Color: " << color;
+}
+
+//display the trip so that we can see all elements in list for deleting
+void display_trip(list<Goat> trip) {
+    for (int i = 0; i < trip.size(); i++) {
+        cout << "[" << i + 1 << "] " << trip[0].get_name();
+    }
 }
