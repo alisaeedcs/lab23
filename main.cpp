@@ -33,6 +33,8 @@ int main() {
     int choice = 0;
     while (choice != 4) {
         choice = main_menu();
+        cout << endl;
+        cout << endl;
         if (choice == 1) {
             //add goat
             add_goat(trip, names, colors);
@@ -51,6 +53,7 @@ int main() {
         else {
             cout << "Invalid choice \n";
         }
+        cout << endl << endl;
     }
     //first run attempt resulted in lots of errors with the auto type specifier have to update my coderuner
     //actually can ust try other thing to run it
@@ -80,20 +83,27 @@ void add_goat(list<Goat> &trip, string names[], string colors[]) {
 
     Goat addedGoat(name, age, color);
     trip.push_back(addedGoat);
-    cout << "\tGoat added, Name: " << name << ", Age: " << age << ", Color: " << color;
+    cout << "\tGoat added, Name: " << name << ", Age: " << age << ", Color: " << color << "\n";
 }
-
 //display the trip so that we can see all elements in list for deleting (use select with this and then use delete with the select)
 void display_trip(list<Goat> trip) {
+    if (trip.empty()) {
+        cout << "List empty.";
+        return;
+    }
     int i = 1;
     for (auto it = trip.begin(); it!= trip.end(); ++it) {
-        cout << "[" << i << "] " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")\n";
+        cout << "\t\t[" << i << "] " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")\n";
         i++;
     }
 }
 
 //select number of goat for now to be used to delete
 int select_goat(list<Goat> trip) {
+    if (trip.empty()) {
+        cout << "List empty.";
+        return -1;
+    }
     display_trip(trip);
 
     int choice;
@@ -105,7 +115,13 @@ int select_goat(list<Goat> trip) {
 
 void delete_goat(list<Goat> &trip) {
     auto it = trip.begin();
-    int choice = select_goat(trip);
+    int choice = select_goat(trip) - 1;
+
+    if (choice < 1 || choice > trip.size()) {
+        cout << "Invalid sleection";
+        return;
+    }
+
     for (int i = 0; i < choice; i++) {
         it++;
     }
